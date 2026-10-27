@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="grad1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff1f2"/>
+      <stop offset="100%" stop-color="#ffe4e6"/>
+    </radialGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#881337" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <!-- Outer Gold Border -->
+  <circle cx="100" cy="100" r="95" fill="#f59e0b" filter="url(#shadow)"/>
+  <circle cx="100" cy="100" r="91" fill="#881337"/>
+  <circle cx="100" cy="100" r="88" fill="#9f1239"/>
+  <!-- Inner Badge Oval -->
+  <ellipse cx="100" cy="100" rx="78" ry="70" fill="url(#grad1)"/>
+  <ellipse cx="100" cy="100" rx="74" ry="66" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="4,2"/>
+  
+  <!-- Kerupuk Graphic Icon -->
+  <g transform="translate(100, 78) scale(0.85)">
+    <circle cx="-15" cy="0" r="18" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+    <circle cx="15" cy="0" r="18" fill="#f59e0b" stroke="#b45309" stroke-width="2"/>
+    <circle cx="0" cy="-12" r="18" fill="#fcd34d" stroke="#d97706" stroke-width="2"/>
+    <path d="M-10,-5 Q0,-15 10,-5 Q15,10 0,15 Q-15,10 -10,-5" fill="#ea580c" opacity="0.3"/>
+  </g>
+
+  <!-- Banner Ribbon with DIANSYAH Text -->
+  <path d="M 28 122 L 172 122 L 160 148 L 40 148 Z" fill="#881337"/>
+  <rect x="35" y="122" width="130" height="24" rx="4" fill="#9f1239" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="100" y="139" font-family="'Space Grotesk', Arial, sans-serif" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="2">DIANSYAH</text>
+  
+  <!-- Subtitle -->
+  <text x="100" y="160" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="7.5" font-weight="700" fill="#881337" text-anchor="middle" letter-spacing="1">PABRIK KERUPUK KEL. 3</text>
+  <text x="100" y="52" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="8" font-weight="700" fill="#9f1239" text-anchor="middle" letter-spacing="1.5">★ SEJAK 2024 ★</text>
+</svg>
