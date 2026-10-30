@@ -26,11 +26,16 @@ export default function Navbar({
   cartCount,
   notifCount,
   isMobilePreview,
-  setIsMobilePreview
+  setIsMobilePreview,
+  onLogout
 }) {
   const handleLogout = () => {
     authService.logout();
-    window.location.reload();
+    if (onLogout) {
+      onLogout();
+    } else {
+      window.location.reload();
+    }
   };
 
   const roles = [

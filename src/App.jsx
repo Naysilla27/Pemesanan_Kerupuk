@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
+import LoginPage from './components/LoginPage';
 import PelangganView from './components/PelangganView';
 import StaffPenggorengView from './components/StaffPenggorengView';
 import StaffPembungkusView from './components/StaffPembungkusView';
@@ -19,6 +20,7 @@ import {
 export default function App() {
   const [activeRole, setActiveRole] = useState('pelanggan');
   const [currentUser, setCurrentUser] = useState(null);
+  const [isGuestMode, setIsGuestMode] = useState(false);
 
   // App Data
   const [products, setProducts] = useState([]);
@@ -65,16 +67,37 @@ export default function App() {
 
   const handleAuthSuccess = (user) => {
     setCurrentUser(user);
+    setIsGuestMode(false);
     if (user && user.role) {
       setActiveRole(user.role);
     }
     refreshData();
   };
 
+  const handleLogout = () => {
+    authService.logout();
+    setCurrentUser(null);
+    setIsGuestMode(false);
+    setActiveRole('pelanggan');
+  };
+
   const handleOrderCreated = (newOrder) => {
     setOrders((prev) => [newOrder, ...prev]);
     refreshData();
   };
+
+  // If not logged in and not in guest mode, show the full modern LoginPage
+  if (!currentUser && !isGuestMode) {
+    return (
+      <LoginPage
+        onLoginSuccess={handleAuthSuccess}
+        onExploreAsGuest={() => {
+          setIsGuestMode(true);
+          setActiveRole('pelanggan');
+        }}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#f8f6f0] flex flex-col font-sans selection:bg-rose-500 selection:text-white">
@@ -83,7 +106,10 @@ export default function App() {
         activeRole={activeRole}
         setActiveRole={setActiveRole}
         currentUser={currentUser}
-        onOpenAuth={() => setIsAuthOpen(true)}
+        onOpenAuth={() => {
+          setIsGuestMode(false);
+          setCurrentUser(null);
+        }}
         onOpenSupabase={() => setIsSupabaseOpen(true)}
         onOpenNotif={() => setIsNotifOpen(true)}
         onOpenCart={() => setIsCartOpen(true)}
@@ -91,6 +117,7 @@ export default function App() {
         notifCount={notifications.length}
         isMobilePreview={isMobilePreview}
         setIsMobilePreview={setIsMobilePreview}
+        onLogout={handleLogout}
       />
 
       {/* Main View Container */}
